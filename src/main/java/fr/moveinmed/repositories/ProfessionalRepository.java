@@ -10,5 +10,5 @@ import java.util.List;
 public interface ProfessionalRepository extends JpaRepository<Professional, Long> {
     List<Professional> findAllByFirstName(String firstName);
 
-    Professional findProfessionalBy(Long id);
+    Professional findProfessionalById(Long id);
 }

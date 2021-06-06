@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProfessionalService {
 
-    void addProfessional(Professional professional);
+    void addProfessional(Long professionId, Professional professional);
 
     List<Professional> getListProfessionals();
 

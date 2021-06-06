@@ -1,23 +1,29 @@
 package fr.moveinmed.services;
 
 import fr.moveinmed.models.Professional;
+import fr.moveinmed.repositories.ProfessionRepository;
 import fr.moveinmed.repositories.ProfessionalRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProfessionalServiceImpl implements ProfessionalService{
+public class ProfessionalServiceImpl implements ProfessionalService {
 
     private final ProfessionalRepository professionalRepository;
+    private final ProfessionRepository professionRepository;
 
-    public ProfessionalServiceImpl(ProfessionalRepository professionalRepository) {
+    public ProfessionalServiceImpl(ProfessionalRepository professionalRepository, ProfessionRepository professionRepository) {
         this.professionalRepository = professionalRepository;
+        this.professionRepository = professionRepository;
     }
 
     @Override
-    public void addProfessional(Professional professional) {
-        professionalRepository.save(professional);
+    public void addProfessional(Long professionId, Professional professional) {
+        professionRepository.findById(professionId).map(profession -> {
+            professional.setProfession(profession);
+            return professionalRepository.save(professional);
+        });
     }
 
     @Override
@@ -27,7 +33,7 @@ public class ProfessionalServiceImpl implements ProfessionalService{
 
     @Override
     public Professional findProfessionalById(Long searchedId) {
-        return professionalRepository.findProfessionalBy(searchedId);
+        return professionalRepository.findProfessionalById(searchedId);
     }
 
     @Override
@@ -36,20 +42,22 @@ public class ProfessionalServiceImpl implements ProfessionalService{
     }
 
     @Override
-    public void deleteProfessional(Long id) {
-        Professional professional = findProfessionalById(id);
-        professionalRepository.delete(professional);
+    public void deleteProfessional(Long professionalId) {
+        professionalRepository.findById(professionalId).map(professional -> {
+            professionalRepository.delete(professional);
+            return professional;
+        });
     }
 
     @Override
-    public void updateProfessional(Professional professional) {
-        Professional professional1 = findProfessionalById(professional.getId());
-        if (professional1 != null) {
-            professional1.setFirstName(professional.getFirstName());
-            professional1.setLastName(professional.getLastName());
-            professional1.setEmail(professional.getEmail());
-            professional1.setPhoneNumber(professional.getPhoneNumber());
-            professional1.setAddress(professional.getAddress());
-        }
+    public void updateProfessional(Professional professionalUpdated) {
+        professionalRepository.findById(professionalUpdated.getId()).map(professional -> {
+            professional.setFirstName(professionalUpdated.getFirstName());
+            professional.setLastName(professionalUpdated.getLastName());
+            professional.setEmail(professionalUpdated.getEmail());
+            professional.setPhoneNumber(professionalUpdated.getPhoneNumber());
+            professional.setAddress(professionalUpdated.getAddress());
+            return professionalRepository.save(professional);
+        });
     }
 }

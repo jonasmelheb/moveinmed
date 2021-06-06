@@ -1,5 +1,5 @@
 /target/
-/src/main/resources/application.properties
+/src/main/resources/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###

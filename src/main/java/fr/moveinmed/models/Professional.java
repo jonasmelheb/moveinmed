@@ -1,42 +1,42 @@
 package fr.moveinmed.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "professional")
-public class Professional {
+public class Professional implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_professional")
     private Long id;
 
-    @NotEmpty
-    @NotNull
+
+    @Column(name = "first_name")
     private String firstName;
 
-    @NotEmpty
-    @NotNull
+
+    @Column(name = "last_name")
     private String lastName;
 
-    @NotEmpty
-    @NotNull
+
     private String email;
 
-    @NotEmpty
-    @NotNull
+
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotEmpty
-    @NotNull
+
     private String address;
 
-    @NotEmpty
-    @NotNull
+
     private Integer active;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_profession", nullable = false)
     private Profession profession;
 
@@ -117,7 +117,7 @@ public class Professional {
     public void setActive(Integer active) {
         this.active = active;
     }
-
+    @JsonIgnore
     public Profession getProfession() {
         return profession;
     }

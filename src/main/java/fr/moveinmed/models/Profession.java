@@ -1,25 +1,24 @@
 package fr.moveinmed.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "profession")
-public class Profession {
+public class Profession implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_profession")
     private Long id;
 
-    @NotEmpty
-    @NotNull
+
     private String name;
 
-    @NotEmpty
-    @NotNull
+
     private String active;
 
     @OneToMany(mappedBy = "profession")
