@@ -6,7 +6,7 @@ public enum Profession {
     INFIRMIER("Infirmier"),
     KINESITHERAPEUTE("Kinésithérapeute"),
     ASSISTANTE_SOCIAL("Assistante sociale"),
-    PSYCHOLOGUE("Psychologue.");
+    PSYCHOLOGUE("Psychologue");
 
     private String label;
 

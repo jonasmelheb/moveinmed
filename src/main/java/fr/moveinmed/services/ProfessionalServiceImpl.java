@@ -31,8 +31,8 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     }
 
     @Override
-    public List<Professional> findAllByFirstNameContaining(String searchedFirstName) {
-        return professionalRepository.findAllByFirstNameContaining(searchedFirstName);
+    public List<Professional> findAllByFirstNameContaining(String searchedName) {
+        return professionalRepository.findAllByFirstNameContaining(searchedName);
     }
 
     @Override

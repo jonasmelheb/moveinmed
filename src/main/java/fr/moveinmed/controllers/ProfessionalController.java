@@ -3,6 +3,7 @@ package fr.moveinmed.controllers;
 import fr.moveinmed.models.Profession;
 import fr.moveinmed.models.Professional;
 import fr.moveinmed.services.ProfessionalService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/professionals")
 public class ProfessionalController {
 
@@ -33,7 +35,7 @@ public class ProfessionalController {
         if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
             List<Professional> professionals = professionalService.getListProfessionals();
             if (professionals != null) {
-                return new ResponseEntity<>(professionals, HttpStatus.OK);
+                return new ResponseEntity<>(professionals,HttpStatus.OK);
             }
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -46,6 +48,15 @@ public class ProfessionalController {
         Professional professional = professionalService.findProfessionalById(id);
         if (professional != null) {
             return new ResponseEntity<>(professional, HttpStatus.OK);
+        }
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity getProfessionalByName(@Param("name") String name) {
+        List<Professional> professionals = professionalService.findAllByFirstNameContaining(name);
+        if (professionals != null) {
+            return new ResponseEntity<>(professionals, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
