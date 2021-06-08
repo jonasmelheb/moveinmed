@@ -1,6 +1,5 @@
 package fr.moveinmed.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -15,29 +14,20 @@ public class Professional implements Serializable {
     @Column(name = "id_professional")
     private Long id;
 
-
     @Column(name = "first_name")
     private String firstName;
 
-
     @Column(name = "last_name")
     private String lastName;
-
-
+    //TODO ANOTATION EMAIL
     private String email;
-
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
-
     private String address;
-
-
     private Integer active;
 
-    @ManyToOne
-    @JoinColumn(name = "id_profession", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Profession profession;
 
     public Professional() {
@@ -117,7 +107,7 @@ public class Professional implements Serializable {
     public void setActive(Integer active) {
         this.active = active;
     }
-    @JsonIgnore
+
     public Profession getProfession() {
         return profession;
     }

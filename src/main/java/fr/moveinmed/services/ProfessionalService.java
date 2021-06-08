@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface ProfessionalService {
 
-    void addProfessional(Long professionId, Professional professional);
+    void addProfessional(Professional professional);
 
     List<Professional> getListProfessionals();
 
     Professional findProfessionalById(Long searchedId);
 
-    List<Professional> findProfessionalByName(String searchedName);
+    List<Professional> findAllByFirstNameContaining(String searchedFirstName);
 
     void deleteProfessional(Long id);
 

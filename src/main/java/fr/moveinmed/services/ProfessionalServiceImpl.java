@@ -1,7 +1,6 @@
 package fr.moveinmed.services;
 
 import fr.moveinmed.models.Professional;
-import fr.moveinmed.repositories.ProfessionRepository;
 import fr.moveinmed.repositories.ProfessionalRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +10,14 @@ import java.util.List;
 public class ProfessionalServiceImpl implements ProfessionalService {
 
     private final ProfessionalRepository professionalRepository;
-    private final ProfessionRepository professionRepository;
 
-    public ProfessionalServiceImpl(ProfessionalRepository professionalRepository, ProfessionRepository professionRepository) {
+    public ProfessionalServiceImpl(ProfessionalRepository professionalRepository) {
         this.professionalRepository = professionalRepository;
-        this.professionRepository = professionRepository;
     }
 
     @Override
-    public void addProfessional(Long professionId, Professional professional) {
-        professionRepository.findById(professionId).map(profession -> {
-            professional.setProfession(profession);
-            return professionalRepository.save(professional);
-        });
+    public void addProfessional(Professional professional) {
+       professionalRepository.save(professional);
     }
 
     @Override
@@ -37,8 +31,8 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     }
 
     @Override
-    public List<Professional> findProfessionalByName(String searchedName) {
-        return professionalRepository.findAllByFirstName(searchedName);
+    public List<Professional> findAllByFirstNameContaining(String searchedFirstName) {
+        return professionalRepository.findAllByFirstNameContaining(searchedFirstName);
     }
 
     @Override

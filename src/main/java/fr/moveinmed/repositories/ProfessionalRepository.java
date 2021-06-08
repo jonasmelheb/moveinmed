@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProfessionalRepository extends JpaRepository<Professional, Long> {
-    List<Professional> findAllByFirstName(String firstName);
+    List<Professional> findAllByFirstNameContaining(String firstName);
 
     Professional findProfessionalById(Long id);
 }
