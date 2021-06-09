@@ -30,7 +30,6 @@ public class ProfessionalController {
 
     @GetMapping
     public ResponseEntity getAllProfessional(@RequestParam(required = false) String firstName, String lastName) {
-        Profession[] professions = Profession.values();
         if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
             List<Professional> professionals = professionalService.getListProfessionals();
             if (professionals != null) {

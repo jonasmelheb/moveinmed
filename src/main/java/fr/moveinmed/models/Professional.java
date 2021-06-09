@@ -42,13 +42,14 @@ public class Professional implements Serializable {
     @Column(columnDefinition = "1")
     private Integer active;
 
-    @Enumerated(EnumType.STRING)
-    private Profession profession;
+    @NotEmpty
+    @NotNull(message = "Profession cannot be null")
+    private String profession;
 
     public Professional() {
     }
 
-    public Professional(String firstName, String lastName, String email, String phoneNumber, String address, Profession profession) {
+    public Professional(String firstName, String lastName, String email, String phoneNumber, String address, String profession) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -57,7 +58,7 @@ public class Professional implements Serializable {
         this.profession = profession;
     }
 
-    public Professional(Long id, String firstName, String lastName, String email, String phoneNumber, String address, Profession profession) {
+    public Professional(Long id, String firstName, String lastName, String email, String phoneNumber, String address, String profession) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -123,11 +124,11 @@ public class Professional implements Serializable {
         this.active = active;
     }
 
-    public Profession getProfession() {
+    public String getProfession() {
         return profession;
     }
 
-    public void setProfession(Profession profession) {
+    public void setProfession(String profession) {
         this.profession = profession;
     }
 
