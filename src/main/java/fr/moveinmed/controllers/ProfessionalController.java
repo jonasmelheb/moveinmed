@@ -1,6 +1,5 @@
 package fr.moveinmed.controllers;
 
-import fr.moveinmed.models.Profession;
 import fr.moveinmed.models.Professional;
 import fr.moveinmed.services.ProfessionalService;
 import org.springframework.data.repository.query.Param;
@@ -61,10 +60,10 @@ public class ProfessionalController {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping
-    public ResponseEntity updateProfessional(@RequestBody Professional professional) {
-        if (professionalService.findProfessionalById(professional.getId()) != null) {
-            professionalService.updateProfessional(professional);
+    @PutMapping("/{id}")
+    public ResponseEntity updateProfessional(@PathVariable("id") Long id, @RequestBody Professional professional) {
+        if (professionalService.findProfessionalById(id) != null) {
+            professionalService.updateProfessional(professional, id);
             return new ResponseEntity<>(professional, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);

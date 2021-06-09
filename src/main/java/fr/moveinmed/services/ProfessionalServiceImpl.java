@@ -44,13 +44,15 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     }
 
     @Override
-    public void updateProfessional(Professional professionalUpdated) {
-        professionalRepository.findById(professionalUpdated.getId()).map(professional -> {
+    public void updateProfessional(Professional professionalUpdated, Long id) {
+        professionalRepository.findById(id).map(professional -> {
+            professional.setId(id);
             professional.setFirstName(professionalUpdated.getFirstName());
             professional.setLastName(professionalUpdated.getLastName());
             professional.setEmail(professionalUpdated.getEmail());
             professional.setPhoneNumber(professionalUpdated.getPhoneNumber());
             professional.setAddress(professionalUpdated.getAddress());
+            professional.setProfession(professionalUpdated.getProfession());
             return professionalRepository.save(professional);
         });
     }

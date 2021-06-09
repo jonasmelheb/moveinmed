@@ -16,5 +16,5 @@ public interface ProfessionalService {
 
     void deleteProfessional(Long id);
 
-    void updateProfessional(Professional professional);
+    void updateProfessional(Professional professional, Long id);
 }

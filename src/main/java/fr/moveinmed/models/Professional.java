@@ -2,6 +2,7 @@ package fr.moveinmed.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,17 +15,31 @@ public class Professional implements Serializable {
     @Column(name = "id_professional")
     private Long id;
 
+    @NotEmpty
+    @NotNull(message = "FirstName cannot be null")
+    @Size(max = 150, message = "FirstName should have max 150 characters")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotEmpty
+    @NotNull(message = "LastName cannot be null")
+    @Size(max = 150, message = "LastName should have max 150 characters")
     @Column(name = "last_name")
     private String lastName;
-    //TODO ANOTATION EMAIL
+
+    @Email(message = "Email should be valid")
     private String email;
 
+    @Pattern(regexp="(^$|[0-9]{10})", message = "Phone should be valid")
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @NotEmpty
+    @NotNull(message = "LastName cannot be null")
+    @Size(max = 150, message = "LastName should have max 150 characters")
     private String address;
+
+    @Column(columnDefinition = "1")
     private Integer active;
 
     @Enumerated(EnumType.STRING)
