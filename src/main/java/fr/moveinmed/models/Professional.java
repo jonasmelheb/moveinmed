@@ -39,9 +39,6 @@ public class Professional implements Serializable {
     @Size(max = 150, message = "LastName should have max 150 characters")
     private String address;
 
-    @Column(columnDefinition = "1")
-    private Integer active;
-
     @NotEmpty
     @NotNull(message = "Profession cannot be null")
     private String profession;
@@ -116,14 +113,6 @@ public class Professional implements Serializable {
         this.address = address;
     }
 
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
-    }
-
     public String getProfession() {
         return profession;
     }
@@ -141,7 +130,6 @@ public class Professional implements Serializable {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
-                ", active=" + active +
                 ", profession=" + profession +
                 '}';
     }
@@ -151,11 +139,11 @@ public class Professional implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Professional that = (Professional) o;
-        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(active, that.active) && Objects.equals(profession, that.profession);
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(profession, that.profession);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, phoneNumber, address, active, profession);
+        return Objects.hash(id, firstName, lastName, email, phoneNumber, address, profession);
     }
 }

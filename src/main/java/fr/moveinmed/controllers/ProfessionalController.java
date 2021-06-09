@@ -29,15 +29,15 @@ public class ProfessionalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Professional>> getAllProfessional(@RequestParam(required = false) String firstName, String lastName) {
-        if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
+    public ResponseEntity<List<Professional>> getAllProfessional(@RequestParam(required = false) String name) {
+        if (StringUtils.isEmpty(name)) {
             List<Professional> professionals = professionalService.getListProfessionals();
             if (professionals != null) {
                 return new ResponseEntity<>(professionals,HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        List<Professional> professionals = professionalService.findAllByFirstNameContaining(firstName);
+        List<Professional> professionals = professionalService.findAllByFirstNameContaining(name);
         return new ResponseEntity<>(professionals, HttpStatus.OK);
     }
 
