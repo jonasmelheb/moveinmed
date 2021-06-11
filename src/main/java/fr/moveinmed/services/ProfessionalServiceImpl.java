@@ -32,7 +32,7 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 
     @Override
     public List<Professional> findAllByFirstNameContaining(String searchedName) {
-        return professionalRepository.findAllByFirstNameContaining(searchedName);
+        return professionalRepository.findAllByFirstNameIgnoreCaseContaining(searchedName);
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,22 +24,18 @@ public class ProfessionalController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Professional> addProfessional(@RequestBody Professional professional) {
+    public ResponseEntity<Professional> addProfessional(@Valid @RequestBody Professional professional) {
         professionalService.addProfessional(professional);
         return new ResponseEntity<>(professional, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Professional>> getAllProfessional(@RequestParam(required = false) String name) {
-        if (StringUtils.isEmpty(name)) {
-            List<Professional> professionals = professionalService.getListProfessionals();
-            if (professionals != null) {
-                return new ResponseEntity<>(professionals,HttpStatus.OK);
-            }
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        List<Professional> professionals = professionalService.getListProfessionals();
+        if (professionals != null) {
+            return new ResponseEntity<>(professionals, HttpStatus.OK);
         }
-        List<Professional> professionals = professionalService.findAllByFirstNameContaining(name);
-        return new ResponseEntity<>(professionals, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
