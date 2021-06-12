@@ -1,6 +1,6 @@
 # MoveInMed
 
-MoveInMed est une application (API RESTful) permettant a un utilisateur de gérer les professionals, créer,
+MoveInMed est une application (API RESTful) permettant à un utilisateur de gérer les professionnels, créer,
 lire, modifier, supprimer des professionnels.
 
 ## Environnement de développement
@@ -51,9 +51,9 @@ cd moveinmed/
 ```
 
 ***DATABASE:***
-* Dans le dossier ```src/main/resources/database``` vous trouverez le script sql pour créer la base de données et un script pour faire un jeux de données.
+* Dans le dossier ```src/main/resources/database``` vous trouverez le script sql pour créer la base de données et faire un jeux de données.
 
-* Changer le fichier ***application.properties*** qui se trouve dans ```src/main/resources``` avec vos informations de votre base do données
+* Changer le fichier ***application.properties*** qui se trouve dans ```src/main/resources``` avec vos informations de votre base de données
 
 ***Exemple:***
 ```properties
