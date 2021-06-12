@@ -13,8 +13,8 @@ CREATE TABLE professional
 
 INSERT INTO professional
     (first_name, last_name, email, phone_number, address, profession)
-VALUES ('test', 'test', 'email@email.fr', '01245697', 'adresse', 'Chirurgier'),
-       ('test2', 'test2', 'email2@email.fr', '01245697', 'adresse2', 'Chirurgier'),
-       ('test3', 'test3', 'email2@email.fr', '01245697', 'adresse3', 'Chirurgier');
+VALUES ('test', 'test', 'email@email.fr', '01245697', 'adresse', 'Chirurgien'),
+       ('test2', 'test2', 'email2@email.fr', '01245697', 'adresse2', 'Assistance social'),
+       ('test3', 'test3', 'email2@email.fr', '01245697', 'adresse3', 'Chirurgien');
 
 

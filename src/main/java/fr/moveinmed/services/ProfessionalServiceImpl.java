@@ -2,6 +2,7 @@ package fr.moveinmed.services;
 
 import fr.moveinmed.models.Professional;
 import fr.moveinmed.repositories.ProfessionalRepository;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class ProfessionalServiceImpl implements ProfessionalService {
     @Override
     public List<Professional> findAllByFirstNameContaining(String searchedName) {
         return professionalRepository.findAllByFirstNameIgnoreCaseContaining(searchedName);
+    }
+
+    @Override
+    public List<Professional> findAllSearch(Specification<Professional> specs) {
+        return professionalRepository.findAll(Specification.where(specs));
     }
 
     @Override

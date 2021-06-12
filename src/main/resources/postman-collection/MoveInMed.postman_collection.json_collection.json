@@ -183,6 +183,38 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "searchWithSpec",
+			"item": [
+				{
+					"name": "http://localhost:8080/api/professionals/searchAll?search=(firstName:'test' OR profession: 'Chirurgien')",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/professionals/searchAll?search=(firstName:'test' OR profession: 'Chirurgien')",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"professionals",
+								"searchAll"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "(firstName:'test' OR profession: 'Chirurgien')"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

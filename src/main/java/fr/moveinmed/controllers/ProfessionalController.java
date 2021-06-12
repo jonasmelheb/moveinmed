@@ -1,7 +1,9 @@
 package fr.moveinmed.controllers;
 
+import com.sipios.springsearch.anotation.SearchSpec;
 import fr.moveinmed.models.Professional;
 import fr.moveinmed.services.ProfessionalService;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +51,15 @@ public class ProfessionalController {
     @GetMapping("/search")
     public ResponseEntity<List<Professional>> getProfessionalByName(@Param("name") String name) {
         List<Professional> professionals = professionalService.findAllByFirstNameContaining(name);
+        if (professionals != null) {
+            return new ResponseEntity<>(professionals, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/searchAll")
+    public ResponseEntity<List<Professional>> searchProfessional(@SearchSpec Specification<Professional> specs) {
+        List<Professional> professionals = professionalService.findAllSearch(specs);
         if (professionals != null) {
             return new ResponseEntity<>(professionals, HttpStatus.OK);
         }
