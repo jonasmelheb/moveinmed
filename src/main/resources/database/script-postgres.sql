@@ -10,3 +10,11 @@ CREATE TABLE professional(
   profession      VARCHAR (150) NOT NULL
 );
 
+INSERT INTO professional 
+(first_name, last_name, email, phone_number, address, profession) 
+VALUES 
+('test', 'test', 'email@email.fr', '01245697', 'adresse', 'Chirurgier'),
+('test2', 'test2', 'email2@email.fr', '01245697', 'adresse2', 'Chirurgier'),
+('test3', 'test3', 'email2@email.fr', '01245697', 'adresse3', 'Chirurgier');
+
+
