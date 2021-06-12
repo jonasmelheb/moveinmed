@@ -5,7 +5,6 @@ import fr.moveinmed.services.ProfessionalService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,7 +29,7 @@ public class ProfessionalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Professional>> getAllProfessional(@RequestParam(required = false) String name) {
+    public ResponseEntity<List<Professional>> getAllProfessional() {
         List<Professional> professionals = professionalService.getListProfessionals();
         if (professionals != null) {
             return new ResponseEntity<>(professionals, HttpStatus.OK);
@@ -57,7 +56,7 @@ public class ProfessionalController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Professional> updateProfessional(@PathVariable("id") Long id, @RequestBody Professional professional) {
+    public ResponseEntity<Professional> updateProfessional(@Valid @PathVariable("id") Long id, @RequestBody Professional professional) {
         if (professionalService.findProfessionalById(id) != null) {
             professionalService.updateProfessional(professional, id);
             return new ResponseEntity<>(professional, HttpStatus.OK);
